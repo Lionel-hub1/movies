@@ -19,7 +19,7 @@ const Layout = () => {
     <>
       <div className="absolute -z-30 h-full w-full bg-background"></div>
       <img
-        className="absolute h-[30rem] w-full -z-20"
+        className="absolute h-[40rem] w-full -z-20"
         src={ICONS.topBackground}
         alt=""
       />

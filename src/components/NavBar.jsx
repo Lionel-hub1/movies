@@ -5,15 +5,15 @@ import { ICONS } from "../data/constants";
 function NavBar({ paths, activeness, location }) {
   return (
     <header className="text-gray-600 h-28 body-font sticky top-0 z-10">
-      <div className="container mx-auto flex flex-wrap py-5 px-14 flex-col md:flex-row items-center">
+      <div className="flex justify-between py-5 px-14 flex-col md:flex-row items-center">
         <Link
           to="/"
-          className="flex title-font font-medium items-center mb-4 md:mb-0 space-x-3"
+          className="flex w-1/2 title-font font-medium items-center mb-4 md:mb-0 space-x-3"
         >
-          <img className="w-10 h-10" src={ICONS.logo} alt="" />
+          <img className="w-14 h-14" src={ICONS.logo} alt="" />
           <img src={ICONS.brand} alt="" />
         </Link>
-        <nav className="md:ml-auto flex flex-wrap font-semibold items-center text-headText justify-center space-x-10">
+        <nav className="md:ml-auto w-1/2 flex flex-wrap font-semibold items-center text-headText justify-center space-x-10">
           {paths.map((path, index) => {
             return (
               <Link
