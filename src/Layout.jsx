@@ -17,14 +17,15 @@ const Layout = () => {
 
   return (
     <>
-      <div className="absolute -z-30 h-full w-full bg-background"></div>
-      <img
-        className="absolute h-[40rem] w-full -z-20"
-        src={ICONS.topBackground}
-        alt=""
-      />
-      <NavBar paths={paths} activeness={activeness} location={location} />
-      <Outlet />
+      <div className="relative -z-30 h-full w-full bg-background">
+        <img
+          className="absolute h-[40rem] w-full -z-20"
+          src={ICONS.topBackground}
+          alt=""
+        />
+        <NavBar paths={paths} activeness={activeness} location={location} />
+        <Outlet />
+      </div>
     </>
   );
 };
