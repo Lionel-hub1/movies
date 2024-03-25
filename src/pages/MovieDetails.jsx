@@ -48,11 +48,13 @@ const MovieDetails = () => {
       ) : (
         <div className="relative w-full px-14 text-white flex justify-center items-center">
           <img
-            className="w-1/2 absolute hidden"
+            className="w-full h-screen object-cover absolute z-[4] opacity-5 "
             src={`http://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
             alt=""
           />
-          <div className={"flex bg-[url()]"}>
+          <div
+            className={`flex`}
+          >
             <YouTube
               className="z-50 w-1/2"
               videoId={movieVideo}
