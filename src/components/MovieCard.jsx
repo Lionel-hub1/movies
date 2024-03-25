@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ item }) => {
   return (
-    <div className="flex flex-col w-[13rem]">
+    <Link to={`/movie/${item.id}`} className="cursor flex flex-col w-[13rem]">
       <img
         className="w-full h-64 object-cover"
         src={`http://image.tmdb.org/t/p/w500${item.poster_path}`}
@@ -17,7 +18,7 @@ const MovieCard = ({ item }) => {
           <span className="text-sm">{item.vote_average}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

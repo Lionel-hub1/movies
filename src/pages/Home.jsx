@@ -13,7 +13,7 @@ const Home = () => {
         "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=7bbf8e63fe34ab1b017214ade09357d1"
       );
       console.log("This is the response: ", data);
-      setMovies(data.results);
+      setMovies(data.results.slice(0, 12));
     } catch (error) {
       console.error(error);
     }
@@ -67,7 +67,7 @@ const Home = () => {
         </div>
       </div>
       <div className="w-full">
-        <div className="w-full flex items-center my-4">
+        <div className="w-full flex items-center my-6">
           <span className="text-4xl font-bold">
             <span className="flex">
               <img src={ICONS.fireIc} alt="" />
@@ -77,7 +77,7 @@ const Home = () => {
           <div className="inline-flex h-[1px] mx-3 w-full bg-white"></div>
           <span className="w-20">See More</span>
         </div>
-        <div className="grid grid-cols-6 space-x-2 space-y-3">
+        <div className="grid grid-cols-6 space-x-2 space-y-5">
           {movies.map((movie) => (
             <MovieCard key={movie.id} item={movie} />
           ))}

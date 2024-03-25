@@ -3,8 +3,17 @@ import { Link } from "react-router-dom";
 import { ICONS } from "../data/constants";
 
 function NavBar({ paths, activeness, location }) {
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    if (window.scrollY > 100) {
+      header.classList.add("bg-black"); // Change 'bg-blue-500' to the Tailwind CSS class for the color you want
+    } else {
+      header.classList.remove("bg-black");
+    }
+  });
+
   return (
-    <header className="text-gray-600 h-28 body-font sticky top-0 z-10">
+    <header className="text-gray-600 h-28 body-font sticky top-0 z-50">
       <div className="flex justify-between py-5 px-14 flex-col md:flex-row items-center">
         <Link
           to="/"
