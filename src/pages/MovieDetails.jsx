@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
+import { ICONS } from "../data/constants";
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -91,13 +92,17 @@ const MovieDetails = () => {
                 Release Date: {movieDetails.release_date}
               </span>
               <div className="flex h-full justify-between items-center mt-5">
-                <span className="space-x-3">
-                  <span className="text-lg text-primary">votes:</span>
+                <span className="flex space-x-3">
+                  <span className="text-lg text-primary">
+                    <img className="w-8 h-8" src={ICONS.likeIc} alt="" />
+                  </span>
                   <span className="text-3xl">{movieDetails.vote_count}</span>
                 </span>
-                <span className="space-x-3">
-                  <span className="text-lg text-primary">Rating:</span>
-                  <span className="text-3xl">{movieDetails.vote_average.toFixed(1)}</span>
+                <span className="flex space-x-3">
+                  <img className="w-8 h-8" src={ICONS.starIc} alt="" />
+                  <span className="text-3xl">
+                    {movieDetails.vote_average.toFixed(1)}
+                  </span>
                 </span>
               </div>
             </div>

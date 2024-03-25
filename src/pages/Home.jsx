@@ -7,6 +7,7 @@ import axios from "axios";
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const [mayLike, setMayLike] = useState([]);
   const getMovies = async () => {
     try {
       const { data } = await axios.get(
@@ -14,6 +15,7 @@ const Home = () => {
       );
       console.log("This is the response: ", data);
       setMovies(data.results.slice(0, 12));
+      setMayLike(data.results.slice(12, 24));
     } catch (error) {
       console.error(error);
     }
@@ -26,8 +28,8 @@ const Home = () => {
   return (
     <div className="text-bodyText px-20 h-full">
       <div className="flex items-end h-[45rem]">
-        <div className="relative flex flex-col h-[26rem] border-r-[2px] border-lines w-[50%] bottom-0">
-          <span className="absolute inline-flex h-[1px] w-1/3 right-0 bg-white"></span>
+        <div className="relative flex flex-col h-[26rem] border-r-[2px] border-linesColor w-[50%] bottom-0">
+          <span className="absolute inline-flex h-[1px] w-1/3 right-0 bg-linesColor"></span>
           <span className="font-['Bebas_Neue'] text-7xl font-normal">
             Find movies
           </span>
@@ -42,7 +44,7 @@ const Home = () => {
           </p>
           <CustomButton value="Watch Tutorial" />
         </div>
-        <div className="flex flex-col p-2 h-[45rem] w-[50%] bottom-0 right-0 border-b-[2px] border-lines">
+        <div className="relative flex flex-col p-2 h-[45rem] w-[50%] bottom-0 right-0 border-b-[2px] border-linesColor">
           <div className="relative flex w-full h-full items-center justify-center">
             <div className="absolute w-[28rem] bottom-0 left-0 z-10">
               <div className="relative w-full h-full">
@@ -64,6 +66,7 @@ const Home = () => {
               alt=""
             />
           </div>
+          <div className="absolute bottom-0 right-0 w-2 h-2 -mb-1 rounded-full inline-flex bg-linesColor"></div>
         </div>
       </div>
       <div className="w-full">
@@ -74,7 +77,7 @@ const Home = () => {
               Trending
             </span>
           </span>
-          <span className="inline-flex h-[1px] mx-3 w-full bg-white"></span>
+          <span className="inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
           <span className="break-before-all">See&nbsp;More</span>
         </div>
         <div className="grid grid-cols-6 space-x-2 space-y-5">
@@ -82,6 +85,21 @@ const Home = () => {
             <MovieCard key={movie.id} item={movie} />
           ))}
         </div>
+        <div className="w-full flex items-center my-6">
+          <span className="text-4xl w-fit font-bold">
+            <span className="flex">
+              {/* <img src={ICONS.fireIc} alt="" /> */}
+              YOU&nbsp;MAY&nbsp;ALSO&nbsp;LIKE&nbsp;THIS
+            </span>
+          </span>
+          <span className="inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
+          <span className="break-before-all">See&nbsp;More</span>
+        </div>
+        <div className="grid grid-cols-6 space-x-2 space-y-5">
+          {mayLike.map((movie) => (
+            <MovieCard key={movie.id} item={movie} />
+          ))}
+          </div>
       </div>
     </div>
   );
