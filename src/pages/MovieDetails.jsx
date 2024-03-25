@@ -16,9 +16,8 @@ const MovieDetails = () => {
         const { data } = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}?api_key=7bbf8e63fe34ab1b017214ade09357d1`
         );
-        console.log("These are Movie details response: ", data);
         setMovieDetails(data);
-        setLoading(false);
+        
       } catch (error) {
         console.error(error);
       }
@@ -29,8 +28,8 @@ const MovieDetails = () => {
         const { data } = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}/videos?api_key=7bbf8e63fe34ab1b017214ade09357d1`
         );
-        console.log("These are Movie video response: ", data.results[0]);
         setMovieVideo(data.results[0].key);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }

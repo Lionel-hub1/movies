@@ -13,7 +13,6 @@ const Home = () => {
       const { data } = await axios.get(
         "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=7bbf8e63fe34ab1b017214ade09357d1"
       );
-      console.log("This is the response: ", data);
       setMovies(data.results.slice(0, 12));
       setMayLike(data.results.slice(8, 24));
     } catch (error) {
