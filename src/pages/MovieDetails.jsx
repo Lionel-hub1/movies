@@ -97,7 +97,7 @@ const MovieDetails = () => {
                 </span>
                 <span className="space-x-3">
                   <span className="text-lg text-primary">Rating:</span>
-                  <span className="text-3xl">{movieDetails.vote_average}</span>
+                  <span className="text-3xl">{movieDetails.vote_average.toFixed(1)}</span>
                 </span>
               </div>
             </div>

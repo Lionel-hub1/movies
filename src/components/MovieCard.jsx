@@ -15,7 +15,10 @@ const MovieCard = ({ item }) => {
         </span>
         <div className="flex justify-between items-center mt-4">
           <span className="text-sm">{item.release_date.slice(0, 4)}</span>
-          <span className="text-sm">{item.vote_average.toFixed(1)}</span>
+          <span className="flex items-center space-x-1">
+            <div className="w-1 h-1 rounded-full inline-flex bg-primary"></div>
+            <span className="text-sm">{item.vote_average.toFixed(1)}</span>
+          </span>
         </div>
       </div>
     </Link>

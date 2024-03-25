@@ -25,9 +25,9 @@ const Home = () => {
 
   return (
     <div className="text-bodyText px-20 h-full">
-      <div className="relative h-[45rem]">
-        <div className="absolute flex flex-col h-[26rem] w-[50%] bottom-0">
-          <span className="w-20 bg-primaryDark"></span>
+      <div className="flex items-end h-[45rem]">
+        <div className="relative flex flex-col h-[26rem] border-r-[2px] border-lines w-[50%] bottom-0">
+          <span className="absolute inline-flex h-[1px] w-1/3 right-0 bg-white"></span>
           <span className="font-['Bebas_Neue'] text-7xl font-normal">
             Find movies
           </span>
@@ -42,7 +42,7 @@ const Home = () => {
           </p>
           <CustomButton value="Watch Tutorial" />
         </div>
-        <div className="absolute flex flex-col h-[45rem] w-[50%] bottom-0 right-0 border-b-2">
+        <div className="flex flex-col p-2 h-[45rem] w-[50%] bottom-0 right-0 border-b-[2px] border-lines">
           <div className="relative flex w-full h-full items-center justify-center">
             <div className="absolute w-[28rem] bottom-0 left-0 z-10">
               <div className="relative w-full h-full">
@@ -68,14 +68,14 @@ const Home = () => {
       </div>
       <div className="w-full">
         <div className="w-full flex items-center my-6">
-          <span className="text-4xl w-auto font-bold">
+          <span className="text-4xl w-fit font-bold">
             <span className="flex">
               <img src={ICONS.fireIc} alt="" />
               Trending
             </span>
           </span>
-          <div className="inline-flex h-[1px] mx-3 w-full bg-white"></div>
-          <div className="">See More</div>
+          <span className="inline-flex h-[1px] mx-3 w-full bg-white"></span>
+          <span className="break-before-all">See&nbsp;More</span>
         </div>
         <div className="grid grid-cols-6 space-x-2 space-y-5">
           {movies.map((movie) => (

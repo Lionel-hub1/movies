@@ -17,6 +17,7 @@ export default {
         headText: "#c8c8c8",
         bodyText: "#cecece",
         bodySecondary: "#F8F8F8",
+        lines: "#A69BFF",
       }
     },
   },
