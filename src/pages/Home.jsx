@@ -15,7 +15,7 @@ const Home = () => {
       );
       console.log("This is the response: ", data);
       setMovies(data.results.slice(0, 12));
-      setMayLike(data.results.slice(12, 24));
+      setMayLike(data.results.slice(8, 24));
     } catch (error) {
       console.error(error);
     }
@@ -36,7 +36,7 @@ const Home = () => {
           <span className="font-['Bebas_Neue'] text-8xl font-normal top-grad">
             TV shows and more
           </span>
-          <p className="py-8 w-[62ch]">
+          <p className="py-8 text-lg w-[62ch]">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
             nisi nesciunt, exercitationem voluptatibus dolores ea consequuntur,
             incidunt commodi odio minima alias voluptas itaque eaque, aliquid
@@ -80,7 +80,7 @@ const Home = () => {
           <span className="inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
           <span className="break-before-all">See&nbsp;More</span>
         </div>
-        <div className="grid grid-cols-6 space-x-2 space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 space-x-2 space-y-5">
           {movies.map((movie) => (
             <MovieCard key={movie.id} item={movie} />
           ))}
@@ -99,7 +99,7 @@ const Home = () => {
           {mayLike.map((movie) => (
             <MovieCard key={movie.id} item={movie} />
           ))}
-          </div>
+        </div>
       </div>
     </div>
   );
