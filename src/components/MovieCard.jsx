@@ -14,8 +14,8 @@ const MovieCard = ({ item }) => {
           {item.title || "Title"}
         </span>
         <div className="flex justify-between items-center mt-4">
-          <span className="text-sm">{item.vote_count}</span>
-          <span className="text-sm">{item.vote_average}</span>
+          <span className="text-sm">{item.release_date.slice(0, 4)}</span>
+          <span className="text-sm">{item.vote_average.toFixed(1)}</span>
         </div>
       </div>
     </Link>
