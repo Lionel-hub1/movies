@@ -42,7 +42,7 @@ const Home = () => {
           </p>
           <CustomButton value="Watch Tutorial" />
         </div>
-        <div className="absolute flex flex-col h-[45rem] w-[50%] bottom-0 right-0">
+        <div className="absolute flex flex-col h-[45rem] w-[50%] bottom-0 right-0 border-b-2">
           <div className="relative flex w-full h-full items-center justify-center">
             <div className="absolute w-[28rem] bottom-0 left-0 z-10">
               <div className="relative w-full h-full">
