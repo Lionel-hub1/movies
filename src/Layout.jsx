@@ -17,9 +17,10 @@ const Layout = () => {
 
   return (
     <>
-      <div className="relative -z-30 h-full w-full bg-background">
+      <div className="relative h-full w-full bg-background">
+        <div></div>
         <img
-          className="absolute h-[40rem] w-full -z-20"
+          className="absolute h-[40rem] w-full"
           src={ICONS.topBackground}
           alt=""
         />
