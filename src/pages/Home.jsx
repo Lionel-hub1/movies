@@ -34,7 +34,7 @@ const Home = () => {
           <span className="font-['Bebas_Neue'] text-8xl font-normal top-grad">
             TV shows and more
           </span>
-          <p className="  w-[62ch]">
+          <p className="py-8 w-[62ch]">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
             nisi nesciunt, exercitationem voluptatibus dolores ea consequuntur,
             incidunt commodi odio minima alias voluptas itaque eaque, aliquid
@@ -68,14 +68,14 @@ const Home = () => {
       </div>
       <div className="w-full">
         <div className="w-full flex items-center my-6">
-          <span className="text-4xl font-bold">
+          <span className="text-4xl w-auto font-bold">
             <span className="flex">
               <img src={ICONS.fireIc} alt="" />
               Trending
             </span>
           </span>
           <div className="inline-flex h-[1px] mx-3 w-full bg-white"></div>
-          <span className="w-20">See More</span>
+          <div className="">See More</div>
         </div>
         <div className="grid grid-cols-6 space-x-2 space-y-5">
           {movies.map((movie) => (
