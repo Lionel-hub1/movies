@@ -4,6 +4,7 @@ import topBackground from "../assets/images/top-background.png";
 import topFrontImg from "../assets/images/top-front-img.png";
 import topBackImg from "../assets/images/top-back-img.png";
 import playIc from "../assets/icons/play_circle.svg";
+import fireIc from "../assets/icons/fire.svg";
 
 export const ICONS = {
     logo,
@@ -12,4 +13,5 @@ export const ICONS = {
     topFrontImg,
     topBackImg,
     playIc,
+    fireIc,
 };
