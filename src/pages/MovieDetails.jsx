@@ -17,7 +17,6 @@ const MovieDetails = () => {
           `https://api.themoviedb.org/3/movie/${id}?api_key=7bbf8e63fe34ab1b017214ade09357d1`
         );
         setMovieDetails(data);
-        
       } catch (error) {
         console.error(error);
       }
@@ -51,14 +50,12 @@ const MovieDetails = () => {
             src={`http://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
             alt=""
           />
-          <div
-            className={`flex`}
-          >
+          <div className={`flex flex-col xl:flex-row`}>
             <YouTube
-              className="z-50 w-1/2"
+              className="z-40 w-full xl:w-1/2 h-[30rem] xl:h-auto object-cover object-top"
               videoId={movieVideo}
               opts={{
-                height: "590",
+                height: "100%",
                 width: "100%",
                 playerVars: {
                   autoplay: 0,
@@ -68,11 +65,10 @@ const MovieDetails = () => {
                 },
               }}
             />
-            <div className="w-1/2 flex flex-col px-5">
+            <div className="w-full h-auto mt-5 xl:mt-0 xl:w-1/2 flex flex-col xl:px-5">
               <h1 className="text-7xl font-bold font-['Bebas_Neue']">
                 {movieDetails.title}
               </h1>
-              {/* Genres */}
               <div className="flex space-x-3">
                 {movieDetails.genres.map((genre, index) => (
                   <span

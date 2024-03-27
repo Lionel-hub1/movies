@@ -27,15 +27,15 @@ const Home = () => {
   return (
     <div className="text-bodyText px-20 h-full">
       <div className="flex items-end h-[45rem]">
-        <div className="relative flex flex-col h-[26rem] border-r-[2px] border-linesColor w-[50%] bottom-0">
-          <span className="absolute inline-flex h-[1px] w-1/3 right-0 bg-linesColor"></span>
+        <div className="relative items-center w-full flex flex-col min-h-[26rem] lg:border-r-[1px] lg:border-linesColor lg:w-[50%] bottom-0">
+          <span className="absolute hidden lg:inline-flex h-[1px] w-1/3 right-0 bg-linesColor"></span>
           <span className="font-['Bebas_Neue'] text-7xl font-normal">
             Find movies
           </span>
-          <span className="font-['Bebas_Neue'] text-8xl font-normal top-grad">
+          <span className="font-['Bebas_Neue'] text-8xl text-center font-normal top-grad">
             TV shows and more
           </span>
-          <p className="py-8 text-lg w-[62ch]">
+          <p className="py-8 lg:px-0 text-center lg:text-start px-4 text-lg w-[62ch]">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
             nisi nesciunt, exercitationem voluptatibus dolores ea consequuntur,
             incidunt commodi odio minima alias voluptas itaque eaque, aliquid
@@ -43,7 +43,7 @@ const Home = () => {
           </p>
           <CustomButton value="Watch Tutorial" />
         </div>
-        <div className="relative flex flex-col p-2 h-[45rem] w-[50%] bottom-0 right-0 border-b-[2px] border-linesColor">
+        <div className="relative hidden lg:flex flex-col p-2 h-[45rem] w-[50%] bottom-0 right-0 lg:border-b-[1px] lg:border-linesColor">
           <div className="relative flex w-full h-full items-center justify-center">
             <div className="absolute w-[28rem] bottom-0 left-0 z-10">
               <div className="relative w-full h-full">

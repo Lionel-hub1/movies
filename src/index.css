@@ -2,9 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* text gradient class */
 .top-grad {
     background: -webkit-linear-gradient(180deg,#FF004D, #1F2F98);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* scroll bar customs */
+::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FF004D;
+    border-radius: 10px;
 }
