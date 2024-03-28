@@ -4,10 +4,10 @@ import { ICONS } from "../data/constants";
 import { useState } from "react";
 
 function NavBar({ paths, activeness, location }) {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   window.addEventListener("resize", function () {
-    setToggle(false);
+    setToggle(true);
   });
 
   window.addEventListener("scroll", function () {
@@ -35,7 +35,7 @@ function NavBar({ paths, activeness, location }) {
         </Link>
         <nav
           className={`${
-            toggle ? "hidden" : "2xl:flex"
+            toggle ? "hidden 2xl:flex" : "flex"
           } bg-white 2xl:bg-transparent flex-col 2xl:flex-row 2xl:bg-white md:ml-auto w-1/2 font-semibold items-center text-headText justify-center space-x-10`}
         >
           {paths.map((path, index) => {
