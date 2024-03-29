@@ -79,7 +79,7 @@ const Home = () => {
           <span className="inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
           <span className="break-before-all">See&nbsp;More</span>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
           {movies.map((movie) => (
             <MovieCard key={movie.id} item={movie} />
           ))}
@@ -94,7 +94,7 @@ const Home = () => {
           <span className="inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
           <span className="break-before-all">See&nbsp;More</span>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
           {mayLike.map((movie) => (
             <MovieCard key={movie.id} item={movie} />
           ))}
