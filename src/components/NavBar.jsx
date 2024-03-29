@@ -35,9 +35,29 @@ function NavBar({ paths, activeness, location }) {
         </Link>
         <nav
           className={`${
-            toggle ? "hidden 2xl:flex" : "flex"
-          } bg-white 2xl:bg-transparent flex-col 2xl:flex-row 2xl:bg-white md:ml-auto w-1/2 font-semibold items-center text-headText justify-center space-x-10`}
+            toggle ? "hidden 2xl:flex" : "flex absolute top-0 right-0"
+          } bg-background 2xl:bg-transparent flex-col 2xl:flex-row md:ml-auto 2xl:w-1/2 font-semibold items-center text-headText justify-center space-x-10`}
         >
+          <div className="2xl:hidden cursor-pointer">
+            <svg
+              className="text-gray-300"
+              onClick={() => handleToggle()}
+              height="2rem"
+              width="2rem"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+              />
+            </svg>
+          </div>
           {paths.map((path, index) => {
             return (
               <Link
