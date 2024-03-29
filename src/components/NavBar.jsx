@@ -40,7 +40,7 @@ function NavBar({ paths, activeness, location }) {
         >
           <div className="2xl:hidden cursor-pointer">
             <svg
-              className="text-gray-300"
+              className="text-gray-300 my-4"
               onClick={() => handleToggle()}
               height="2rem"
               width="2rem"
@@ -65,7 +65,7 @@ function NavBar({ paths, activeness, location }) {
                 to={path.path}
                 className={`font-['Inter'] text-xl ${
                   location.pathname === path.path ? activeness : "font-normal"
-                } hover:text-[#fff] transition duration-300 ease-in-out`}
+                } hover:text-[#fff] px-5 2xl:px-0 transition duration-300 ease-in-out`}
               >
                 {path.name}
               </Link>
