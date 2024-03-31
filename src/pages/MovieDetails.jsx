@@ -70,14 +70,14 @@ const MovieDetails = () => {
                 {movieDetails.title}
               </h1>
               <div className="flex space-x-3">
-                {movieDetails.genres.map((genre, index) => (
+                {movieDetails ? movieDetails.genres.map((genre, index) => (
                   <span
                     key={index}
                     className="py-1 px-3 text-lg font-['Inter'] text-headText bg-slate-400 bg-opacity-55 rounded"
                   >
                     #{genre.name}
                   </span>
-                ))}
+                )): ""}
               </div>
               <p className="text-2xl font-['Inter'] text-bodyText py-4">
                 {movieDetails.overview}

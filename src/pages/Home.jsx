@@ -27,15 +27,15 @@ const Home = () => {
   return (
     <div className="text-bodyText px-20 h-full">
       <div className="flex items-end h-[45rem]">
-        <div className="relative items-center w-full flex flex-col min-h-[26rem] lg:border-r-[1px] lg:border-linesColor lg:w-[50%] bottom-0">
+        <div className="relative items-center lg:items-start w-full flex flex-col min-h-[26rem] lg:border-r-[1px] lg:border-linesColor lg:w-[50%] bottom-0">
           <span className="absolute hidden lg:inline-flex h-[1px] w-1/3 right-0 bg-linesColor"></span>
           <span className="font-['Bebas_Neue'] text-7xl font-normal">
             Find movies
           </span>
-          <span className="font-['Bebas_Neue'] text-8xl text-center font-normal top-grad">
+          <span className="font-['Bebas_Neue'] text-8xl font-normal top-grad">
             TV shows and more
           </span>
-          <p className="py-8 lg:px-0 text-center lg:text-start px-4 text-lg w-[62ch]">
+          <p className="py-8 lg:px-0 text-center lg:text-start px-4 text-lg ">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
             nisi nesciunt, exercitationem voluptatibus dolores ea consequuntur,
             incidunt commodi odio minima alias voluptas itaque eaque, aliquid
@@ -86,13 +86,13 @@ const Home = () => {
         </div>
         <div className="w-full flex items-center my-6">
           <span className="text-4xl w-fit font-bold">
-            <span className="flex">
+            <div className="flex">
               {/* <img src={ICONS.fireIc} alt="" /> */}
-              YOU&nbsp;MAY&nbsp;ALSO&nbsp;LIKE&nbsp;THIS
-            </span>
+              YOU MAY ALSO LIKE THIS
+            </div>
           </span>
-          <span className="inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
-          <span className="break-before-all">See&nbsp;More</span>
+          <span className="hidden xl:inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
+          <span className="hidden xl:inline-flex ">See&nbsp;More</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
           {mayLike.map((movie) => (
