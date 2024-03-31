@@ -7,11 +7,11 @@ const Layout = () => {
   const location = useLocation();
   const paths = [
     { path: "/", name: "Home" },
-    { path: "/Explore", name: "Explore" },
-    { path: "/genre", name: "Genre" },
-    { path: "/news", name: "News" },
-    { path: "/movies", name: "Movies" },
-    { path: "/tvShow", name: "TvShows" },
+    { path: "explore/", name: "Explore" },
+    { path: "genre/", name: "Genre" },
+    { path: "news/", name: "News" },
+    { path: "movies/", name: "Movies" },
+    { path: "tvShow/", name: "TvShows" },
   ];
   const activeness = "font-black text-white";
 
@@ -19,7 +19,7 @@ const Layout = () => {
     <>
       <div className="relative min-h-screen w-full bg-background">
         <img
-          className="absolute h-[40rem] w-full"
+          className="absolute -z-10 h-[40rem] w-full"
           src={ICONS.topBackground}
           alt=""
         />
