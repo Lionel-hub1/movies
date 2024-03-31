@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import MovieCard from "../components/MovieCard";
 
 const Explore = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -25,18 +26,22 @@ const Explore = () => {
   };
 
   return (
-    <div className="bg-white z-50">
-      <input
-        type="search"
-        value={searchTerm}
-        onChange={handleSearch}
-        placeholder="Search movies"
-      />
-      <ul>
+    <div className="text-headText">
+      <div className="w-full flex flex-col items-center space-y-3">
+        <h1 className="text-4xl font-bold">Explore Movies</h1>
+        <input
+          className="outline-none border-2 border-primary rounded-md p-2 w-96"
+          type="search"
+          value={searchTerm}
+          onChange={handleSearch}
+          placeholder="Search movies here"
+        />
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
         {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <MovieCard key={movie.id} item={movie} />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const MovieCard = ({ item }) => {
   return (
-    <Link to={`/movie/${item.id}`} className="cursor flex flex-col w-[13rem]">
+    <Link to={`/movie/${item.id}`} className="flex flex-col w-[13rem]">
       <img
         className="w-full h-64 object-cover"
         src={`http://image.tmdb.org/t/p/w500${item.poster_path}`}
