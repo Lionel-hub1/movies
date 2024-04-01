@@ -56,14 +56,13 @@ const MovieDetails = () => {
             />
             <div className={` flex flex-col xl:flex-row`}>
               <YouTube
-                className="z-30 w-full xl:w-1/2 min-h-[20rem] md:h-[25rem] lg:h-[30rem] xl:h-auto object-cover object-top"
+                className="z-30 w-full xl:w-1/2 min-h-[25rem] lg:h-[30rem] xl:h-auto object-cover object-top"
                 videoId={movieVideo}
                 opts={{
                   height: "100%",
                   width: "100%",
                   playerVars: {
                     autoplay: 0,
-                    controls: 0,
                     modestbranding: 1,
                     loop: 1,
                   },
