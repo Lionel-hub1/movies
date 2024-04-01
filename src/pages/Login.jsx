@@ -63,7 +63,7 @@ const Login = () => {
 
         <button
           type="submit"
-          className="inline-flex w-full items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-primary bg-opacity-20 h-[60px]"
+          className="inline-flex w-full items-center justify-center px-8 py-4 font-sans font-semibold tracking-wide text-white bg-primary bg-opacity-35 h-[60px]"
         >
           Login
         </button>
