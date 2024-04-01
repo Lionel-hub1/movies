@@ -7,6 +7,7 @@ import playIc from "../assets/icons/play_circle.svg";
 import fireIc from "../assets/icons/fire.svg";
 import likeIc from "../assets/icons/like.svg";
 import starIc from "../assets/icons/star.svg";
+import loadingIc from "../assets/icons/loading.svg";
 
 export const ICONS = {
     logo,
@@ -18,4 +19,5 @@ export const ICONS = {
     fireIc,
     likeIc,
     starIc,
+    loadingIc,
 };

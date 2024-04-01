@@ -27,7 +27,8 @@ const MovieDetails = () => {
         const { data } = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}/videos?api_key=7bbf8e63fe34ab1b017214ade09357d1`
         );
-        setMovieVideo(data.results[0].key);
+        console.log(data);
+        setMovieVideo(data.results[0].key || data.results[0].key);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -40,8 +41,10 @@ const MovieDetails = () => {
   return (
     <>
       {loading ? (
-        <div className="h-full animate-ping text-white flex justify-center items-center">
-          <h1 className="text-3xl">Loading...</h1>
+        <div className="h-full text-white flex justify-center items-center">
+          <span className="w-20 h-20 animate-spin">
+            <img src={ICONS.loadingIc} alt="" />
+          </span>
         </div>
       ) : (
         <div className="relative w-full px-14 text-white flex justify-center items-center">
@@ -65,20 +68,23 @@ const MovieDetails = () => {
                 },
               }}
             />
-            <div className="w-full h-auto mt-5 xl:mt-0 xl:w-1/2 flex flex-col xl:px-5">
+            <div className="z-10 w-full h-auto mt-5 xl:mt-0 xl:w-1/2 flex flex-col xl:px-5">
               <h1 className="text-7xl font-bold font-['Bebas_Neue']">
                 {movieDetails.title}
               </h1>
               <div className="flex space-x-3">
-                {movieDetails ? movieDetails.genres.map((genre, index) => (
-                  <span
-                    key={index}
-                    className="py-1 px-3 text-lg font-['Inter'] text-headText bg-slate-400 bg-opacity-55 rounded"
-                  >
-                    #{genre.name}
-                  </span>
-                )): ""}
+                {movieDetails
+                  ? movieDetails.genres.map((genre, index) => (
+                      <span
+                        key={index}
+                        className="py-1 px-3 text-lg font-['Inter'] text-headText bg-slate-400 bg-opacity-55 rounded"
+                      >
+                        #{genre.name}
+                      </span>
+                    ))
+                  : ""}
               </div>
+
               <p className="text-2xl font-['Inter'] text-bodyText py-4">
                 {movieDetails.overview}
               </p>

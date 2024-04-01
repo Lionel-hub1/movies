@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const MovieCard = ({ item }) => {
   return (
-    <Link to={`/movie/${item.id}`} className="flex flex-col w-[13rem]">
+    <Link to={`/movie/${item.id}`} className="group flex flex-col w-[13rem]">
       <img
-        className="w-full h-64 object-cover"
+        className="w-full h-64 object-cover transition ease-in-out duration-300 transform group-hover:scale-105"
         src={`http://image.tmdb.org/t/p/w500${item.poster_path}`}
         alt=""
       />

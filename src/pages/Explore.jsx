@@ -28,7 +28,9 @@ const Explore = () => {
   return (
     <div className="text-headText">
       <div className="w-full flex flex-col items-center space-y-3">
-        <h1 className="text-4xl font-bold">Explore Movies</h1>
+        <h1 className="text-4xl font-bold font-['Bebas_Neue']">
+          Explore Movies
+        </h1>
         <input
           className="outline-none border-2 border-primary rounded-md p-2 w-96 text-background"
           type="search"

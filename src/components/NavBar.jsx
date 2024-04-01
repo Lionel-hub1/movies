@@ -25,7 +25,7 @@ function NavBar({ paths, activeness, location }) {
 
   return (
     <header className="text-gray-600 h-28 body-font sticky top-0 z-50 transition-colors duration-300">
-      <div className="flex justify-between py-5 px-14 2xl:flex-row items-center">
+      <div className="flex justify-between py-5 px-14 xl:flex-row items-center">
         <Link
           to="/"
           className="flex w-1/2 title-font font-medium items-center mb-4 md:mb-0 space-x-3"
@@ -35,10 +35,10 @@ function NavBar({ paths, activeness, location }) {
         </Link>
         <nav
           className={`${
-            toggle ? "hidden 2xl:flex" : "flex absolute top-0 right-0"
-          } bg-background 2xl:bg-transparent flex-col 2xl:flex-row md:ml-auto 2xl:w-1/2 font-semibold items-center text-headText justify-center space-x-10`}
+            toggle ? "hidden xl:flex" : "flex absolute top-0 right-0"
+          } bg-background xl:bg-transparent flex-col items-center xl:flex-row w-64 xl:w-1/2 font-semibold text-headText justify-center xl:space-x-10`}
         >
-          <div className="2xl:hidden cursor-pointer">
+          <div className="xl:hidden cursor-pointer">
             <svg
               className="text-gray-300 my-4"
               onClick={() => handleToggle()}
@@ -63,16 +63,16 @@ function NavBar({ paths, activeness, location }) {
               <Link
                 key={index}
                 to={path.path}
-                className={`font-['Inter'] text-xl ${
+                className={`font-['Inter'] py-3 xl:py-0 text-xl ${
                   location.pathname === path.path ? activeness : "font-normal"
-                } hover:text-[#fff] px-5 2xl:px-0 transition duration-300 ease-in-out`}
+                } hover:text-[#fff] px-5 xl:px-0 transition duration-300 ease-in-out`}
               >
                 {path.name}
               </Link>
             );
           })}
         </nav>
-        <div className="2xl:hidden cursor-pointer">
+        <div className="xl:hidden cursor-pointer">
           <svg
             className={``}
             onClick={() => handleToggle()}
