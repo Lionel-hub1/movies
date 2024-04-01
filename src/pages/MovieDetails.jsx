@@ -56,7 +56,7 @@ const MovieDetails = () => {
             />
             <div className={`flex flex-col xl:flex-row`}>
               <YouTube
-                className="z-40 w-full xl:w-1/2 h-[30rem] xl:h-auto object-cover object-top"
+                className="z-30 w-full xl:w-1/2 h-[30rem] xl:h-auto object-cover object-top"
                 videoId={movieVideo}
                 opts={{
                   height: "100%",

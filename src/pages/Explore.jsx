@@ -27,19 +27,19 @@ const Explore = () => {
 
   return (
     <div className="text-headText z-50">
-      <div className="w-full flex flex-col items-center space-y-3">
+      <div className="sticky top-28 z-10 bg-background pb-2 top w-full px-8 flex flex-col items-center space-y-3">
         <h1 className="text-4xl font-bold font-['Bebas_Neue']">
           Explore Movies
         </h1>
         <input
-          className="outline-none border-2 border-primary rounded-md p-2 w-96 text-background"
+          className="outline-none border-2 border-primary rounded-md p-2 w-full text-background"
           type="search"
           value={searchTerm}
           onChange={handleSearch}
           placeholder="Search movies here"
         />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
+      <div className="px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
         {movies.map((movie) => (
           <MovieCard key={movie.id} item={movie} />
         ))}

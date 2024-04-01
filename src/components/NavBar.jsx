@@ -25,7 +25,7 @@ function NavBar({ paths, activeness, location }) {
 
   return (
     <header className="text-gray-600 h-28 body-font sticky top-0 z-50 transition-colors duration-300">
-      <div className="flex justify-between py-5 px-14 xl:flex-row items-center">
+      <div className="flex justify-between py-5 px-8 lg:px-14 xl:flex-row items-center">
         <Link
           to="/"
           className="flex w-1/2 title-font font-medium items-center mb-4 md:mb-0 space-x-3"
