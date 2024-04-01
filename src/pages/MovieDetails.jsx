@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
@@ -6,11 +6,17 @@ import { ICONS } from "../data/constants";
 
 const MovieDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [movieDetails, setMovieDetails] = useState({});
   const [movieVideo, setMovieVideo] = useState({});
   const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setIsLoggedIn(true);
+    }
     const getMovieDetails = async () => {
       try {
         const { data } = await axios.get(
@@ -36,7 +42,7 @@ const MovieDetails = () => {
     };
     getMovieDetails();
     getMovieVideo();
-  }, [id]);
+  }, [id, isLoggedIn]);
 
   return (
     <>
@@ -56,7 +62,22 @@ const MovieDetails = () => {
             />
             <div className={` flex flex-col xl:flex-row`}>
               <div className="relative z-30 w-full xl:w-1/2 h-[20rem] lg:h-[30rem] xl:h-auto">
-                <div className="absolute w-full h-full bg-gray-600 bg-opacity-80"></div>
+                {!isLoggedIn && (
+                  <div className="absolute flex font['Inter'] flex-col text-xl space-y-3 items-center justify-center w-full h-full bg-black bg-opacity-85">
+                    <p>You are not signed in...</p>
+                    <button
+                      onClick={() => {
+                        navigate("/login", {
+                          state: { prevLocation: location.pathname },
+                        });
+                      }}
+                      className="bg-primary py-1 text-2xl font-black px-3 rounded-lg"
+                    >
+                      Login
+                    </button>
+                    <p>to play the movie</p>
+                  </div>
+                )}
                 <YouTube
                   className="z-30 w-full h-full object-cover object-top"
                   videoId={movieVideo}
@@ -80,7 +101,7 @@ const MovieDetails = () => {
                     ? movieDetails.genres.map((genre, index) => (
                         <span
                           key={index}
-                          className="py-1 px-2 lg:px-3 text-xs lg:text-lg font-['Inter'] text-headText bg-slate-400 bg-opacity-55 rounded"
+                          className="flex flex-wrap py-1 px-2 lg:px-3 text-xs lg:text-lg font-['Inter'] text-headText bg-slate-400 bg-opacity-55 rounded"
                         >
                           #{genre.name}
                         </span>
