@@ -6,6 +6,15 @@ const Explore = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
 
+  window.addEventListener("scroll", function () {
+    const searching = document.querySelector("#searcher");
+    if (window.scrollY > 30) {
+      searching.classList.add("bg-background"); // Change 'bg-blue-500' to the Tailwind CSS class for the color you want
+    } else {
+      searching.classList.remove("bg-background");
+    }
+  });
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -27,12 +36,15 @@ const Explore = () => {
 
   return (
     <div className="text-headText z-50">
-      <div className="sticky top-28 z-10 bg-background pb-2 top w-full px-8 flex flex-col items-center space-y-3">
+      <div
+        id="searcher"
+        className="sticky top-28 z-10 pb-2 top w-full px-8 flex flex-col items-center space-y-3 transition-colors duration-300"
+      >
         <h1 className="text-4xl font-bold font-['Bebas_Neue']">
           Explore Movies
         </h1>
         <input
-          className="outline-none border-2 border-primary rounded-md p-2 w-full text-background"
+          className="outline-none border-2 border-primary rounded-md p-2 w-full max-w-3xl text-background"
           type="search"
           value={searchTerm}
           onChange={handleSearch}
