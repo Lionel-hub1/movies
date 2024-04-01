@@ -36,11 +36,11 @@ function NavBar({ paths, activeness, location }) {
         <nav
           className={`${
             toggle ? "hidden xl:flex" : "flex absolute top-0 right-0"
-          } bg-background xl:bg-transparent flex-col items-center xl:flex-row w-64 xl:w-1/2 font-semibold text-headText justify-center xl:space-x-10`}
+          } bg-background border-2 border-primary xl:bg-transparent flex-col items-center xl:flex-row w-64 xl:w-1/2 font-semibold text-headText justify-center xl:space-x-10`}
         >
           <div className="xl:hidden cursor-pointer">
             <svg
-              className="text-gray-300 my-4"
+              className="text-secondary my-4"
               onClick={() => handleToggle()}
               height="2rem"
               width="2rem"

@@ -26,7 +26,7 @@ const Explore = () => {
   };
 
   return (
-    <div className="text-headText">
+    <div className="text-headText z-50">
       <div className="w-full flex flex-col items-center space-y-3">
         <h1 className="text-4xl font-bold font-['Bebas_Neue']">
           Explore Movies
@@ -43,6 +43,7 @@ const Explore = () => {
         {movies.map((movie) => (
           <MovieCard key={movie.id} item={movie} />
         ))}
+        <div className="float-end"></div>
       </div>
     </div>
   );

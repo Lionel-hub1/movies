@@ -17,9 +17,10 @@ const Layout = () => {
 
   return (
     <>
-      <div className="relative min-h-screen w-full bg-background">
+      <div className="relative min-h-screen w-full">
+        <div className="absolute -z-[2] bg-background w-full min-h-full"></div>
         <img
-          className="absolute -z-10 h-[40rem] w-full"
+          className="absolute -z-[1] max-h-[35rem] w-full"
           src={ICONS.topBackground}
           alt=""
         />

@@ -26,7 +26,7 @@ const Home = () => {
 
   return (
     <div className="text-bodyText px-20 h-full">
-      <div className="flex items-end h-[45rem]">
+      <div className="flex xl:items-end h-[45rem]">
         <div className="relative items-center xl:items-start w-full flex flex-col min-h-[26rem] xl:border-r-[1px] xl:border-linesColor xl:w-[50%] bottom-0">
           <span className="absolute hidden xl:inline-flex h-[1px] w-1/3 right-0 bg-linesColor"></span>
           <span className="font-['Bebas_Neue'] text-7xl font-normal">
