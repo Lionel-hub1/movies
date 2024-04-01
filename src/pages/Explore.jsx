@@ -50,12 +50,12 @@ const Explore = () => {
           onChange={handleSearch}
           placeholder="Search movies here"
         />
+        <p>{movies.length} results found.</p>
       </div>
       <div className="px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 space-x-2 space-y-5">
         {movies.map((movie) => (
           <MovieCard key={movie.id} item={movie} />
         ))}
-        <div className="float-end"></div>
       </div>
     </div>
   );

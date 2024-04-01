@@ -55,19 +55,22 @@ const MovieDetails = () => {
               alt=""
             />
             <div className={` flex flex-col xl:flex-row`}>
-              <YouTube
-                className="z-30 w-full xl:w-1/2 h-[20rem] lg:h-[30rem] xl:h-auto object-cover object-top"
-                videoId={movieVideo}
-                opts={{
-                  height: "100%",
-                  width: "100%",
-                  playerVars: {
-                    autoplay: 0,
-                    modestbranding: 1,
-                    loop: 1,
-                  },
-                }}
-              />
+              <div className="relative z-30 w-full xl:w-1/2 h-[20rem] lg:h-[30rem] xl:h-auto">
+                <div className="absolute w-full h-full bg-gray-600 bg-opacity-80"></div>
+                <YouTube
+                  className="z-30 w-full h-full object-cover object-top"
+                  videoId={movieVideo}
+                  opts={{
+                    height: "100%",
+                    width: "100%",
+                    playerVars: {
+                      autoplay: 0,
+                      modestbranding: 1,
+                      loop: 1,
+                    },
+                  }}
+                />
+              </div>
               <div className="z-10 px-8 w-full h-auto mt-5 xl:mt-0 xl:w-1/2 flex flex-col xl:px-5">
                 <h1 className="text-3xl lg:text-7xl font-bold font-['Bebas_Neue']">
                   {movieDetails.title}
