@@ -85,6 +85,7 @@ function NavBar({ paths, activeness, location }) {
               </Link>
             );
           })}
+          
         </nav>
         <div className="xl:hidden cursor-pointer">
           <svg
