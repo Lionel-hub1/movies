@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import { ICONS } from "../data/constants";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function NavBar({ paths, activeness, location }) {
   const [toggle, setToggle] = useState(true);
@@ -12,11 +12,11 @@ function NavBar({ paths, activeness, location }) {
     setToggle(true);
   });
 
-  useEffect(() => {
+  window.addEventListener("mouseover", function () {
     if (JSON.parse(localStorage.getItem("user"))) {
       setIsLoggedIn(true);
     }
-  }, [isLoggedIn]);
+  });
 
   window.addEventListener("scroll", function () {
     const header = document.querySelector("header");
@@ -85,7 +85,25 @@ function NavBar({ paths, activeness, location }) {
               </Link>
             );
           })}
-          
+          {isLoggedIn ? (
+            <button
+              className="py-1 px-3 border-[1px] border-primary"
+              onClick={() => logout()}
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              className="py-1 px-3 border-[1px] border-primary"
+              onClick={() => {
+                navigate("/login", {
+                  state: { prevLocation: location.pathname },
+                });
+              }}
+            >
+              Login
+            </button>
+          )}
         </nav>
         <div className="xl:hidden cursor-pointer">
           <svg
