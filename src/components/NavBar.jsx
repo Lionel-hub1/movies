@@ -85,25 +85,6 @@ function NavBar({ paths, activeness, location }) {
               </Link>
             );
           })}
-          {isLoggedIn ? (
-            <button
-              className="py-1 px-3 border-[1px] border-primary"
-              onClick={() => logout()}
-            >
-              Logout
-            </button>
-          ) : (
-            <button
-              className="py-1 px-3 border-[1px] border-primary"
-              onClick={() => {
-                navigate("/login", {
-                  state: { prevLocation: location.pathname }
-                });
-              }}
-            >
-              Login
-            </button>
-          )}
         </nav>
         <div className="xl:hidden cursor-pointer">
           <svg
