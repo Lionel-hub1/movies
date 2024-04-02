@@ -20,8 +20,9 @@ const MovieDetails = () => {
     const getMovieDetails = async () => {
       try {
         const { data } = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}?api_key=7bbf8e63fe34ab1b017214ade09357d1`
+          `https://api.themoviedb.org/3/movie/${id}?api_key=7bbf8e63fe34ab1b017214ade09357d1&append_to_response=videos`
         );
+        console.log("Welcome data", data);
         setMovieDetails(data);
       } catch (error) {
         console.error(error);
@@ -33,7 +34,7 @@ const MovieDetails = () => {
         const { data } = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}/videos?api_key=7bbf8e63fe34ab1b017214ade09357d1`
         );
-        console.log(data);
+        
         setMovieVideo(data.results[0].key || data.results[0].key);
         setLoading(false);
       } catch (error) {
@@ -63,7 +64,7 @@ const MovieDetails = () => {
             <div className={` flex flex-col xl:flex-row`}>
               <div className="relative z-30 w-full xl:w-1/2 h-[20rem] lg:h-[30rem] xl:h-auto">
                 {!isLoggedIn && (
-                  <div className="absolute flex font['Inter'] flex-col text-xl space-y-3 items-center justify-center w-full h-full bg-black bg-opacity-85">
+                  <div className="absolute flex font['Inter'] flex-col text-xl space-y-3 items-center justify-center w-full h-full bg-black bg-opacity-90">
                     <p>You are not signed in...</p>
                     <button
                       onClick={() => {

@@ -30,7 +30,9 @@ const Login = () => {
         onSubmit={handleSubmit}
         aria-label="login-form"
       >
-        <h2 className="mb-10 text-3xl font-bold text-center">Login</h2>
+        <h2 className="font-['Bebas_Neue'] mb-10 text-3xl font-bold text-center">
+          Login
+        </h2>
         <div className="flex flex-col items-start mb-5 gap-y-3">
           <label htmlFor="email" className="text-sm font-medium cursor-pointer">
             Email
