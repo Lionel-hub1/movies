@@ -50,7 +50,7 @@ function NavBar({ paths, activeness, location }) {
         <nav
           className={`${
             toggle ? "hidden xl:flex" : "flex absolute top-0 right-0"
-          } bg-background border-2 border-primary xl:border-none xl:bg-transparent flex-col items-center xl:flex-row w-64 xl:w-1/2 font-semibold text-headText justify-center xl:space-x-10`}
+          } bg-background border-2 border-primary xl:border-none xl:bg-transparent flex-col items-center xl:flex-row w-64 xl:w-1/2 font-semibold text-headText justify-center xl:space-x-8`}
         >
           <div className="xl:hidden cursor-pointer">
             <svg

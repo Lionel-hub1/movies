@@ -43,9 +43,9 @@ const Home = () => {
           </p>
           <CustomButton value="Watch Tutorial" />
         </div>
-        <div className="relative hidden xl:flex flex-col p-2 h-[45rem] w-[50%] bottom-0 right-0 xl:border-b-[1px] xl:border-linesColor">
+        <div className="relative hidden xl:block p-10 h-[45rem] w-[50%] bottom-0 right-0 xl:border-b-[1px] xl:border-linesColor">
           <div className="relative flex w-full h-full items-center justify-center">
-            <div className="absolute w-[28rem] bottom-0 left-0 z-10">
+            <div className="absolute w-2/3 h-5/6 bottom-0 left-0 z-10">
               <div className="relative w-full h-full">
                 <img
                   className="absolute top-0 bottom-0 my-auto right-0 left-0 mx-auto w-30 h-30 object-cover"
@@ -53,14 +53,14 @@ const Home = () => {
                   alt=""
                 />
                 <img
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-lg"
                   src={ICONS.topFrontImg}
                   alt=""
                 />
               </div>
             </div>
             <img
-              className="absolute w-[28rem] top-0 right-0"
+              className="absolute w-2/3 h-5/6 rounded-lg top-0 right-0 object-cover"
               src={ICONS.topBackImg}
               alt=""
             />
@@ -85,18 +85,15 @@ const Home = () => {
           ))}
         </div>
         <div className="w-full flex items-center my-6">
-          <span className="text-4xl w-fit font-bold">
-            <div className="flex">
-              {/* <img src={ICONS.fireIc} alt="" /> */}
-              YOU MAY ALSO LIKE THIS
-            </div>
+          <span className="text-4xl font-bold">
+            <div className="flex">YOU MAY ALSO LIKE THIS</div>
           </span>
           <span className="hidden xl:inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
           <span className="hidden xl:inline-flex ">See&nbsp;More</span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-10">
           {mayLike.map((movie) => (
-            <MovieCard key={movie.id} item={movie} /> 
+            <MovieCard key={movie.id} item={movie} />
           ))}
         </div>
       </div>
