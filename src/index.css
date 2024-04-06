@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* * {
+    border: 1px solid red;
+} */
+
 /* text gradient class */
 .top-grad {
     background: -webkit-linear-gradient(180deg,#FF004D, #1F2F98);

@@ -69,11 +69,9 @@ const Home = () => {
         </div>
       </div>
       <div className="w-full">
-        <div className="w-full flex items-center my-6">
-          <span className="flex items-center text-lg lg:text-4xl  font-bold">
-            <img src={ICONS.fireIc} alt="" />
-            <p>Trending</p>
-          </span>
+        <div className="w-full flex justify-stretch items-center my-6">
+          <img className="w-auto whitespace-nowrap" src={ICONS.fireIc} alt="" />
+          <span className="flex text-lg lg:text-4xl  font-bold">Trending</span>
           <span className="inline-flex h-[1px] w-full mx-4 bg-linesColor"></span>
           <span className="inline-flex ">See&nbsp;More</span>
         </div>
@@ -84,10 +82,12 @@ const Home = () => {
         </div>
         <div className="w-full flex items-center my-6">
           <span className="text-4xl font-bold">
-            <div className="flex">YOU MAY ALSO LIKE THIS</div>
+            <div className="flex whitespace-nowrap">YOU MAY ALSO LIKE THIS</div>
           </span>
           <span className="hidden xl:inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
-          <span className="hidden xl:inline-flex ">See&nbsp;More</span>
+          <span className="hidden xl:inline-flex whitespace-nowrap">
+            See More
+          </span>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-10">
           {mayLike.map((movie) => (
