@@ -82,7 +82,7 @@ const Home = () => {
         </div>
         <div className="w-full flex items-center my-6">
           <span className="text-4xl font-bold">
-            <div className="flex whitespace-nowrap">YOU MAY ALSO LIKE THIS</div>
+            <div className="flex xl:whitespace-nowrap">YOU MAY ALSO LIKE THIS</div>
           </span>
           <span className="hidden xl:inline-flex h-[1px] mx-10 w-full bg-linesColor"></span>
           <span className="hidden xl:inline-flex whitespace-nowrap">
