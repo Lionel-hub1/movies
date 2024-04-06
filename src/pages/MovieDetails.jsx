@@ -97,7 +97,7 @@ const MovieDetails = () => {
                 <h1 className="text-3xl lg:text-7xl font-bold font-['Bebas_Neue']">
                   {movieDetails.title}
                 </h1>
-                <div className="flex space-x-1 lg:space-x-3">
+                <div className="flex flex-wrap space-x-1 lg:space-x-3">
                   {movieDetails
                     ? movieDetails.genres.map((genre, index) => (
                         <span
