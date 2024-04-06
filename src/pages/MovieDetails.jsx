@@ -80,7 +80,7 @@ const MovieDetails = () => {
                   </div>
                 )}
                 <YouTube
-                  className="z-30 w-full h-full object-cover object-top"
+                  className="z-30 w-screen xl:w-full h-full object-cover object-top"
                   videoId={movieVideo}
                   opts={{
                     height: "100%",
