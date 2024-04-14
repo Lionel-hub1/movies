@@ -22,7 +22,6 @@ const MovieDetails = () => {
         const { data } = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}?api_key=7bbf8e63fe34ab1b017214ade09357d1&append_to_response=videos`
         );
-        console.log("Welcome data", data);
         setMovieDetails(data);
       } catch (error) {
         console.error(error);
