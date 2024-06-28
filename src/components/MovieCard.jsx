@@ -9,7 +9,7 @@ const MovieCard = ({ item }) => {
     >
       <img
         className="w-full min-h-64 object-cover transition ease-in-out duration-300 transform group-hover:scale-[1.02]"
-        src={`http://image.tmdb.org/t/p/w500${item.poster_path}`}
+        src={item.poster_path ? `http://image.tmdb.org/t/p/w500${item.poster_path}` : "https://via.placeholder.com/300x450"}
         alt=""
       />
       <div className="flex flex-col ">
