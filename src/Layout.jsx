@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import { ICONS } from "./data/constants";
+import FooterLion from "./components/FooterLion";
 
 const Layout = () => {
   const location = useLocation();
@@ -26,6 +27,7 @@ const Layout = () => {
         />
         <NavBar paths={paths} activeness={activeness} location={location} />
         <Outlet />
+        <FooterLion />
       </div>
     </>
   );
