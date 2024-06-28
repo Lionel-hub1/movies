@@ -6,14 +6,22 @@ const Explore = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [movies, setMovies] = useState([]);
 
-  window.addEventListener("scroll", function () {
-    const searching = document.querySelector("#searcher");
-    if (window.scrollY > 30) {
-      searching.classList.add("bg-background"); // Change 'bg-blue-500' to the Tailwind CSS class for the color you want
-    } else {
-      searching.classList.remove("bg-background");
-    }
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const searching = document.querySelector("#searcher");
+      if (window.scrollY > 30) {
+        searching.classList.add("bg-background");
+      } else {
+        searching.classList.remove("bg-background");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchMovies = async () => {
