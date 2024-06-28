@@ -35,7 +35,7 @@ const Explore = () => {
   };
 
   return (
-    <div className="text-headText z-50">
+    <div className="text-headText z-50 min-h-[100vh]">
       <div
         id="searcher"
         className="sticky top-28 z-10 pb-2 top w-full px-8 flex flex-col items-center space-y-3 transition-colors duration-300"
