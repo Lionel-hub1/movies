@@ -1,131 +1,238 @@
 import PropTypes from "prop-types";
 import { Link, useNavigate } from "react-router-dom";
 import { ICONS } from "../data/constants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function NavBar({ paths, activeness, location }) {
-  const [toggle, setToggle] = useState(true);
+function NavBar({ paths, activeness, location, scrolled }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  window.addEventListener("resize", function () {
-    setToggle(true);
-  });
+  useEffect(() => {
+    // Check login status on component mount and when localStorage changes
+    const checkLoginStatus = () => {
+      const userData = localStorage.getItem("user");
+      if (userData) {
+        setIsLoggedIn(true);
+        setUser(JSON.parse(userData));
+      } else {
+        setIsLoggedIn(false);
+        setUser(null);
+      }
+    };
 
-  window.addEventListener("mouseover", function () {
-    if (JSON.parse(localStorage.getItem("user"))) {
-      setIsLoggedIn(true);
-    }
-  });
+    checkLoginStatus();
 
-  window.addEventListener("scroll", function () {
-    const header = document.querySelector("header");
-    if (window.scrollY > 30) {
-      header.classList.add("bg-black"); // Change 'bg-blue-500' to the Tailwind CSS class for the color you want
-    } else {
-      header.classList.remove("bg-black");
-    }
-  });
+    // Listen for storage events (for multi-tab support)
+    window.addEventListener("storage", checkLoginStatus);
 
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
+    // Close menu on resize to desktop view
+    const handleResize = () => {
+      if (window.innerWidth >= 1280) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("storage", checkLoginStatus);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const logout = () => {
     localStorage.removeItem("user");
     setIsLoggedIn(false);
-    window.location = "/";
+    setUser(null);
+    setIsMenuOpen(false);
+    navigate("/");
   };
 
   return (
-    <header className="text-gray-600 h-28 body-font sticky top-0 z-50 transition-colors duration-300">
-      <div className="flex justify-between py-5 px-8 lg:px-14 xl:flex-row items-center">
+    <header
+      className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background shadow-lg" : ""
+        }`}
+    >
+      <div className="flex items-center justify-between py-4 px-4 sm:px-8 lg:px-14">
+        {/* Logo */}
         <Link
           to="/"
-          className="flex w-1/2 title-font font-medium items-center mb-4 md:mb-0 space-x-3"
+          className="flex items-center space-x-3"
+          aria-label="Go to homepage"
         >
-          <img className="w-14 h-14" src={ICONS.logo} alt="" />
-          <img src={ICONS.brand} alt="" />
+          <img className="w-10 h-10 sm:w-12 sm:h-12" src={ICONS.logo} alt="" />
+          <img src={ICONS.brand} alt="Movies" className="hidden sm:block h-6" />
         </Link>
-        <nav
-          className={`${
-            toggle ? "hidden xl:flex" : "flex absolute top-0 right-0"
-          } bg-background border-2 border-primary xl:border-none xl:bg-transparent flex-col items-center xl:flex-row w-64 xl:w-1/2 font-semibold text-headText justify-center xl:space-x-8`}
-        >
-          <div className="xl:hidden cursor-pointer">
+
+        {/* Desktop Navigation */}
+        <nav className="hidden xl:flex items-center space-x-8">
+          {paths.map((path, index) => (
+            <Link
+              key={index}
+              to={path.path}
+              className={`font-['Inter'] text-base transition-colors duration-300 ${location.pathname === path.path
+                  ? activeness
+                  : "text-headText hover:text-white"
+                }`}
+            >
+              <span className="flex items-center space-x-1">
+                {path.icon && <span>{path.icon}</span>}
+                <span>{path.name}</span>
+              </span>
+            </Link>
+          ))}
+        </nav>
+
+        {/* User actions */}
+        <div className="flex items-center space-x-4">
+          {/* Search button */}
+          <button
+            className="hidden md:flex items-center text-headText hover:text-white"
+            onClick={() => navigate("/explore")}
+            aria-label="Search"
+          >
             <svg
-              className="text-secondary my-4"
-              onClick={() => handleToggle()}
-              height="2rem"
-              width="2rem"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
+              className="w-5 h-5"
               fill="none"
+              stroke="currentColor"
               viewBox="0 0 24 24"
             >
               <path
-                stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              />
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
             </svg>
-          </div>
-          {paths.map((path, index) => {
-            return (
-              <Link
-                key={index}
-                to={path.path}
-                className={`font-['Inter'] py-3 xl:py-0 text-xl ${
-                  location.pathname === path.path ? activeness : "font-normal"
-                } hover:text-[#fff] px-5 xl:px-0 transition duration-300 ease-in-out`}
-              >
-                {path.name}
-              </Link>
-            );
-          })}
+          </button>
+
+          {/* User menu or login button */}
           {isLoggedIn ? (
-            <button
-              className="py-1 px-3 border-[1px] border-primary"
-              onClick={() => logout()}
-            >
-              Logout
-            </button>
+            <div className="relative">
+              <button
+                className="flex items-center space-x-2 text-white"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-expanded={isMenuOpen}
+                aria-label="User menu"
+              >
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+                  {user?.name ? user.name.charAt(0).toUpperCase() : "U"}
+                </div>
+                <span className="hidden md:block">{user?.name || "User"}</span>
+              </button>
+
+              {/* Dropdown menu */}
+              {isMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 py-2 bg-gray-800 rounded-lg shadow-xl z-50">
+                  <div className="px-4 py-2 text-sm text-gray-400">
+                    Signed in as{" "}
+                    <span className="font-medium text-white">{user?.email}</span>
+                  </div>
+                  <div className="border-t border-gray-700 my-1"></div>
+                  <button
+                    onClick={logout}
+                    className="block w-full text-left px-4 py-2 text-sm text-white hover:bg-gray-700"
+                  >
+                    Sign out
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
-            <button
-              className="py-1 px-3 border-[1px] border-primary"
-              onClick={() => {
-                navigate("/login", {
-                  state: { prevLocation: location.pathname },
-                });
-              }}
+            <Link
+              to="/login"
+              state={{ prevLocation: location.pathname }}
+              className="py-2 px-4 bg-primary rounded-lg text-white hover:bg-opacity-80 transition-colors text-sm md:text-base"
             >
-              Login
+              Sign In
+            </Link>
+          )}
+
+          {/* Mobile menu button */}
+          <button
+            className="xl:hidden text-white"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <nav
+          id="mobile-menu"
+          className="xl:hidden bg-gray-900 pb-4 px-4 sm:px-8 space-y-1 border-t border-gray-800"
+        >
+          {paths.map((path, index) => (
+            <Link
+              key={index}
+              to={path.path}
+              className={`block py-3 text-base ${location.pathname === path.path
+                  ? "text-white font-bold"
+                  : "text-headText"
+                }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <span className="flex items-center space-x-2">
+                {path.icon && <span>{path.icon}</span>}
+                <span>{path.name}</span>
+              </span>
+            </Link>
+          ))}
+
+          {isLoggedIn && (
+            <button
+              className="block w-full text-left py-3 text-red-400 hover:text-red-300"
+              onClick={logout}
+            >
+              Sign out
             </button>
           )}
         </nav>
-        <div className="xl:hidden cursor-pointer">
-          <svg
-            className={``}
-            onClick={() => handleToggle()}
-            viewBox="0 0 512 512"
-            fill="white"
-            height="1.4em"
-            width="1.5em"
-          >
-            <path d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm64 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zm384 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z" />
-          </svg>
-        </div>
-      </div>
+      )}
     </header>
   );
 }
 
 NavBar.propTypes = {
-  paths: PropTypes.array,
-  activeness: PropTypes.string,
-  location: PropTypes.object,
+  paths: PropTypes.array.isRequired,
+  activeness: PropTypes.string.isRequired,
+  location: PropTypes.object.isRequired,
+  scrolled: PropTypes.bool,
 };
 
 export default NavBar;

@@ -2,25 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
-    border: 1px solid red;
-} */
+/* Base styles */
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	@apply bg-background text-white font-['Inter'];
+}
+
+/* Typography enhancement */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply font-['Bebas_Neue'] font-bold;
+}
 
 /* text gradient class */
 .top-grad {
-    background: -webkit-linear-gradient(180deg,#FF004D, #1F2F98);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+	background: linear-gradient(180deg, #ff004d, #1f2f98);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-/* scroll bar customs */
+/* Card hover effects */
+.movie-card-hover {
+	@apply transition-all duration-300 transform hover:scale-105;
+}
+
+/* Button styles */
+.btn {
+	@apply px-4 py-2 rounded-lg font-medium transition-all duration-300;
+}
+
+.btn-primary {
+	@apply bg-primary text-white hover:bg-opacity-80;
+}
+
+.btn-outline {
+	@apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
+}
+
+/* Loading spinner */
+.spinner {
+	@apply animate-spin;
+}
+
+/* Custom scroll bar */
 ::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 10px;
+	width: 10px;
+	height: 10px;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+	@apply bg-gray-800;
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #FF004D;
-    border-radius: 10px;
+	@apply bg-primary;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	@apply bg-opacity-80;
+}
+
+/* Media query for better mobile typography */
+@media (max-width: 640px) {
+	h1 {
+		@apply text-3xl;
+	}
+	h2 {
+		@apply text-2xl;
+	}
+	p {
+		@apply text-sm;
+	}
+}
+
+/* Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.animate-fadeIn {
+	animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes slideUp {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.animate-slideUp {
+	animation: slideUp 0.5s ease-out;
 }
