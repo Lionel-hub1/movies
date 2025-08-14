@@ -3,6 +3,8 @@ import NavBar from "./components/NavBar";
 import { ICONS } from "./data/constants";
 import FooterLion from "./components/FooterLion";
 import { useEffect, useState } from "react";
+import PwaInstallPrompt from "./components/PwaInstallPrompt";
+import OfflineWarning from "./components/OfflineWarning";
 
 const Layout = () => {
   const location = useLocation();
@@ -36,6 +38,7 @@ const Layout = () => {
 
   return (
     <div className="relative min-h-screen w-full">
+      <OfflineWarning />
       <div className="absolute -z-[2] bg-background w-full min-h-full"></div>
       <img
         className="absolute -z-[1] max-h-[35rem] w-full object-cover object-top"
@@ -56,6 +59,7 @@ const Layout = () => {
       </main>
 
       <FooterLion />
+      <PwaInstallPrompt />
     </div>
   );
 };
