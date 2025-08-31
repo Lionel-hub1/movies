@@ -1,44 +1,48 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { ICONS } from "../data/constants";
 
 const TvShowCard = ({ show }) => {
     return (
-        <div className="bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+        <Link
+            to={`/tv/${show.id}`}
+            className="flex flex-col h-full overflow-hidden transition-all duration-300 bg-gray-800 rounded-lg shadow-md hover:shadow-xl group"
+        >
             <div className="relative aspect-[2/3] overflow-hidden">
                 {show.poster_path ? (
                     <img
                         src={`http://image.tmdb.org/t/p/w342${show.poster_path}`}
                         alt={show.name}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                     />
                 ) : (
-                    <div className="w-full h-full bg-gray-700 flex items-center justify-center">
+                    <div className="flex items-center justify-center w-full h-full bg-gray-700">
                         <span className="text-gray-500">No image</span>
                     </div>
                 )}
-                <div className="absolute top-2 right-2 bg-black bg-opacity-70 rounded-full p-1 px-2 text-xs font-bold">
+                <div className="absolute p-1 px-2 text-xs font-bold bg-black rounded-full top-2 right-2 bg-opacity-70">
                     {show.vote_average ? show.vote_average.toFixed(1) : "N/A"} ★
                 </div>
             </div>
-            <div className="p-4 flex-grow flex flex-col">
-                <h3 className="font-bold text-lg mb-1 line-clamp-1">{show.name}</h3>
-                <p className="text-gray-400 text-sm mb-2">
+            <div className="flex flex-col flex-grow p-4">
+                <h3 className="mb-1 text-lg font-bold transition-colors line-clamp-1 group-hover:text-primary">{show.name}</h3>
+                <p className="mb-2 text-sm text-gray-400">
                     {show.first_air_date ? new Date(show.first_air_date).getFullYear() : "Unknown"}
                 </p>
-                <p className="text-sm text-gray-300 line-clamp-2 flex-grow">
+                <p className="flex-grow text-sm text-gray-300 line-clamp-2">
                     {show.overview || "No description available"}
                 </p>
-                <div className="mt-3 pt-3 border-t border-gray-700 flex justify-between items-center">
+                <div className="flex items-center justify-between pt-3 mt-3 border-t border-gray-700">
                     <span className="text-xs text-gray-400">
                         {show.original_language?.toUpperCase() || "EN"}
                     </span>
-                    <button className="bg-primary text-sm py-1 px-3 rounded-md hover:bg-opacity-80 transition-colors">
-                        Details
-                    </button>
+                    <span className="px-3 py-1 text-sm transition-colors rounded-md bg-primary group-hover:bg-opacity-80">
+                        View Details
+                    </span>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 
@@ -145,17 +149,17 @@ const TvShows = () => {
             {/* Featured Show Hero Section */}
             {featuredShow && !loading && (
                 <div className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/90 to-transparent z-10"></div>
+                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-background via-background/90 to-transparent"></div>
                     {featuredShow.backdrop_path && (
                         <img
                             src={`http://image.tmdb.org/t/p/original${featuredShow.backdrop_path}`}
                             alt={featuredShow.name}
-                            className="w-full h-full object-cover"
+                            className="object-cover w-full h-full"
                         />
                     )}
-                    <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-12 flex flex-col md:flex-row items-start md:items-end">
+                    <div className="absolute bottom-0 left-0 right-0 z-20 flex flex-col items-start p-6 md:p-12 md:flex-row md:items-end">
                         {featuredShow.poster_path && (
-                            <div className="hidden md:block w-40 lg:w-48 rounded-lg overflow-hidden shadow-2xl mr-8 mb-4 md:mb-0">
+                            <div className="hidden w-40 mb-4 mr-8 overflow-hidden rounded-lg shadow-2xl md:block lg:w-48 md:mb-0">
                                 <img
                                     src={`http://image.tmdb.org/t/p/w342${featuredShow.poster_path}`}
                                     alt={featuredShow.name}
@@ -164,7 +168,7 @@ const TvShows = () => {
                             </div>
                         )}
                         <div className="max-w-3xl">
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2 drop-shadow-lg">
+                            <h1 className="mb-2 text-3xl font-bold md:text-4xl lg:text-5xl drop-shadow-lg">
                                 {featuredShow.name}
                             </h1>
 
@@ -181,13 +185,13 @@ const TvShows = () => {
                                     </span>
                                 )}
                                 {featuredShow.number_of_seasons > 0 && (
-                                    <span className="text-sm bg-gray-800 px-2 py-1 rounded">
+                                    <span className="px-2 py-1 text-sm bg-gray-800 rounded">
                                         {featuredShow.number_of_seasons} {featuredShow.number_of_seasons === 1 ? 'Season' : 'Seasons'}
                                     </span>
                                 )}
                             </div>
 
-                            <p className="text-sm md:text-base text-gray-300 mb-4 line-clamp-2 md:line-clamp-3">
+                            <p className="mb-4 text-sm text-gray-300 md:text-base line-clamp-2 md:line-clamp-3">
                                 {featuredShow.overview}
                             </p>
 
@@ -195,35 +199,37 @@ const TvShows = () => {
                                 {featuredShow.genres?.slice(0, 4).map(genre => (
                                     <span
                                         key={genre.id}
-                                        className="text-xs bg-primary bg-opacity-80 px-3 py-1 rounded-full"
+                                        className="px-3 py-1 text-xs rounded-full bg-primary bg-opacity-80"
                                     >
                                         {genre.name}
                                     </span>
                                 ))}
                             </div>
 
-                            <button className="bg-primary hover:bg-opacity-80 transition-colors px-6 py-2 rounded-lg flex items-center">
-                                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"></path>
-                                </svg>
-                                Watch Now
-                            </button>
+                            <Link to={`/tv/${featuredShow.id}`}>
+                                <button className="flex items-center px-6 py-2 transition-colors rounded-lg bg-primary hover:bg-opacity-80">
+                                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"></path>
+                                    </svg>
+                                    View Details
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
             )}
 
-            <div className="px-4 sm:px-8 lg:px-12 pb-16 max-w-7xl mx-auto">
+            <div className="px-4 pb-16 mx-auto sm:px-8 lg:px-12 max-w-7xl">
                 {/* Tabs Navigation */}
                 <div className="flex justify-center my-8 overflow-x-auto">
-                    <div className="flex space-x-1 bg-gray-800 p-1 rounded-lg">
+                    <div className="flex p-1 space-x-1 bg-gray-800 rounded-lg">
                         {tabItems.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`px-4 py-2 text-sm md:text-base rounded-lg transition-all ${activeTab === tab.id
-                                        ? "bg-primary text-white"
-                                        : "hover:bg-gray-700"
+                                    ? "bg-primary text-white"
+                                    : "hover:bg-gray-700"
                                     }`}
                             >
                                 {tab.name}
@@ -233,19 +239,19 @@ const TvShows = () => {
                 </div>
 
                 {error ? (
-                    <div className="bg-red-900 bg-opacity-20 p-4 rounded-lg text-center my-8">
+                    <div className="p-4 my-8 text-center bg-red-900 rounded-lg bg-opacity-20">
                         <p className="text-red-400">{error}</p>
                         <button
                             onClick={() => window.location.reload()}
-                            className="mt-4 bg-primary px-4 py-2 rounded-lg hover:bg-opacity-80 transition-all"
+                            className="px-4 py-2 mt-4 transition-all rounded-lg bg-primary hover:bg-opacity-80"
                         >
                             Try Again
                         </button>
                     </div>
                 ) : loading && shows.length === 0 ? (
-                    <div className="flex justify-center items-center h-64">
+                    <div className="flex items-center justify-center h-64">
                         <div className="flex flex-col items-center">
-                            <span className="w-16 h-16 animate-spin mb-4">
+                            <span className="w-16 h-16 mb-4 animate-spin">
                                 <img src={ICONS.loadingIc} alt="Loading" />
                             </span>
                             <p className="animate-pulse">Loading TV shows...</p>
@@ -253,7 +259,7 @@ const TvShows = () => {
                     </div>
                 ) : (
                     <>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+                        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
                             {shows.map((show) => (
                                 <TvShowCard key={show.id} show={show} />
                             ))}
@@ -264,12 +270,12 @@ const TvShows = () => {
                             <div className="flex justify-center mt-12">
                                 <button
                                     onClick={loadMoreShows}
-                                    className="bg-primary px-8 py-3 rounded-lg hover:bg-opacity-80 transition-all flex items-center"
+                                    className="flex items-center px-8 py-3 transition-all rounded-lg bg-primary hover:bg-opacity-80"
                                     disabled={loading}
                                 >
                                     {loading ? (
                                         <>
-                                            <span className="w-5 h-5 animate-spin mr-2">
+                                            <span className="w-5 h-5 mr-2 animate-spin">
                                                 <img src={ICONS.loadingIc} alt="Loading" className="w-full h-full" />
                                             </span>
                                             Loading...
