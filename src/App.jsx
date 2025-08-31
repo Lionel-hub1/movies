@@ -9,6 +9,7 @@ import Genre from "./pages/Genre";
 import News from "./pages/News";
 import Movies from "./pages/Movies";
 import TvShows from "./pages/TvShows";
+import TvShowDetails from "./pages/TvShowDetails";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/movies" element={<Movies />} />
           <Route path="/tvShow" element={<TvShows />} />
           <Route path="movie/:id" element={<MovieDetails />} />
+          <Route path="tv/:id" element={<TvShowDetails />} />
           <Route path="login/" element={<Login />} />
           <Route path="*" element={<NoPage />} />
         </Route>
