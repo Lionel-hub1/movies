@@ -41,7 +41,7 @@ const FooterLion = () => {
     ];
 
     return (
-        <footer className="bg-gray-900 mt-12">
+        <footer className="mt-12 bg-gray-900">
             <div className="container px-4 py-12 mx-auto">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                     {/* Logo and Description */}
@@ -50,7 +50,7 @@ const FooterLion = () => {
                             <img className="w-8 h-8" src={ICONS.logo} alt="Logo" />
                             <img src={ICONS.brand} alt="Brand" className="h-6" />
                         </div>
-                        <p className="text-sm text-gray-400 mb-4">
+                        <p className="mb-4 text-sm text-gray-400">
                             Discover the best movies and TV shows from around the world, all in one place.
                         </p>
                         <div className="flex space-x-4">
@@ -59,7 +59,7 @@ const FooterLion = () => {
                                     key={index}
                                     href={link.url}
                                     aria-label={link.name}
-                                    className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:bg-primary hover:text-white transition-colors"
+                                    className="flex items-center justify-center w-8 h-8 text-gray-400 transition-colors bg-gray-800 rounded-full hover:bg-primary hover:text-white"
                                 >
                                     <i className={link.icon}></i>
                                 </a>
@@ -76,7 +76,7 @@ const FooterLion = () => {
                                     <li key={linkIndex}>
                                         <Link
                                             to={link.url}
-                                            className="text-sm text-gray-400 hover:text-primary transition-colors"
+                                            className="text-sm text-gray-400 transition-colors hover:text-primary"
                                         >
                                             {link.name}
                                         </Link>
