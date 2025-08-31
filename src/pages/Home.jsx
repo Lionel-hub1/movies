@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CustomButton from "../components/CustomButton";
 import MovieCard from "../components/MovieCard";
 import { ICONS } from "../data/constants";
 import axios from "axios";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [recommendedMovies, setRecommendedMovies] = useState([]);
   const [featuredMovies, setFeaturedMovies] = useState([]);
@@ -42,30 +43,9 @@ const Home = () => {
     fetchMovies();
   }, []);
 
-  // Function to watch movie trailer
-  const watchTrailer = async (movieId) => {
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=7bbf8e63fe34ab1b017214ade09357d1`
-      );
-
-      const videos = response.data.results;
-      // Find trailer
-      const trailer = videos.find(video =>
-        video.type === "Trailer" && video.site === "YouTube"
-      );
-
-      if (trailer) {
-        window.open(`https://www.youtube.com/watch?v=${trailer.key}`, '_blank');
-      } else {
-        // If no trailer found, redirect to movie details
-        window.location.href = `/movie/${movieId}`;
-      }
-    } catch (err) {
-      console.error("Failed to fetch trailer:", err);
-      // Fallback to movie details page
-      window.location.href = `/movie/${movieId}`;
-    }
+  // Function to navigate to movie details instead of opening trailer
+  const watchTrailer = (movieId) => {
+    navigate(`/movie/${movieId}`);
   };
 
   return (
@@ -114,12 +94,12 @@ const Home = () => {
               {featuredMovies.length >= 2 && (
                 <>
                   {/* First featured movie (front) */}
-                  <div className="absolute bottom-0 left-0 z-10 w-2/3 transition-transform duration-500 transform h-5/6 hover:scale-105">
+                  <div className="absolute bottom-0 left-0 z-10 w-2/3 transition-transform duration-500 transform h-5/6 hover:scale-105 hover:z-20">
                     <div className="relative w-full h-full overflow-hidden rounded-lg shadow-2xl">
                       <div onClick={() => watchTrailer(featuredMovies[0].id)}
                         className="absolute top-0 bottom-0 left-0 right-0 z-10 flex items-center justify-center mx-auto my-auto transition-opacity cursor-pointer w-30 h-30 opacity-90 hover:opacity-100">
-                        <div className="absolute inset-0 bg-black bg-opacity-40 transition-opacity opacity-0 hover:opacity-60"></div>
-                        <img className="w-20 h-20 filter drop-shadow-lg relative z-20" src={ICONS.playIc} alt="Play" />
+                        <div className="absolute inset-0 transition-opacity bg-black opacity-0 bg-opacity-40 hover:opacity-60"></div>
+                        <img className="relative z-20 w-20 h-20 filter drop-shadow-lg" src={ICONS.playIc} alt="Play" />
                       </div>
                       <img
                         className="object-cover w-full h-full rounded-lg"
@@ -140,17 +120,17 @@ const Home = () => {
                     </div>
                   </div>
 
-                  {/* Second featured movie (back) */}
-                  <div className="absolute top-0 right-0 w-2/3 overflow-hidden transition-transform duration-500 transform rounded-lg shadow-xl h-5/6 hover:translate-y-2">
+                  {/* Second featured movie (back) - comes to front on hover */}
+                  <div className="absolute top-0 right-0 w-2/3 overflow-hidden transition-all duration-500 transform rounded-lg shadow-xl h-5/6 hover:translate-y-2 hover:z-30 hover:scale-105">
                     <div onClick={() => watchTrailer(featuredMovies[1].id)}
                       className="relative w-full h-full cursor-pointer group">
-                      <div className="absolute inset-0 bg-black bg-opacity-40 transition-opacity opacity-0 group-hover:opacity-60 z-10"></div>
+                      <div className="absolute inset-0 z-10 transition-opacity bg-black opacity-0 bg-opacity-40 group-hover:opacity-60"></div>
                       <img
                         className="object-cover w-full h-full rounded-lg"
                         src={`http://image.tmdb.org/t/p/w780${featuredMovies[1].backdrop_path}`}
                         alt={featuredMovies[1].title}
                       />
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity z-20">
+                      <div className="absolute z-20 transition-opacity transform -translate-x-1/2 -translate-y-1/2 opacity-0 top-1/2 left-1/2 group-hover:opacity-100">
                         <img className="w-20 h-20 filter drop-shadow-lg" src={ICONS.playIc} alt="Play" />
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent">
@@ -197,7 +177,7 @@ const Home = () => {
         <>
           {/* Trending Section */}
           <section className="mb-16">
-            <div className="flex items-center w-full my-8 group">
+            <div className="flex items-center justify-between w-full my-8 group">
               <div className="flex items-center">
                 <img className="w-auto h-6 mr-2 md:h-8" src={ICONS.fireIc} alt="Trending" />
                 <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl">Trending</h2>
